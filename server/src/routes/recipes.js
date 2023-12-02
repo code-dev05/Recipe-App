@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     const response = await RecipeModel.find({});
     res.json(response);
   } catch (err) {
-    console.error(err);
+    res.json({ error: err });
   }
 });
 
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     const response = await recipe.save();
     res.json(response);
   } catch (err) {
-    console.error(err);
+    res.json({ error: err });
   }
 });
 
@@ -33,7 +33,7 @@ router.put("/", async (req, res) => {
     await user.save();
     res.json({ savedRecipes: user.savedRecipes });
   } catch (err) {
-    console.error(err);
+    res.json({ error: err });
   }
 });
 
@@ -42,7 +42,7 @@ router.get("/savedRecipes/ids", async (req, res) => {
     const user = await UserModel.findById(req.body.userID);
     res.json({ savedRecipes: user?.savedRecipes });
   } catch (err) {
-    console.error(err);
+    res.json({ error: err });
   }
 });
 
@@ -55,7 +55,7 @@ router.get("/savedRecipes", async (req, res) => {
 
     res.json({ savedRecipes });
   } catch (err) {
-    console.error(err);
+    res.json({ error: err });
   }
 });
 
